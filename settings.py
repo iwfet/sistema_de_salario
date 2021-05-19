@@ -1,4 +1,5 @@
-import time
+from re import T
+import time 
 import tkinter as tk
 from tkinter import Canvas, filedialog
 import pandas as pd
@@ -16,21 +17,40 @@ root = tk.Tk()
 
 Canvas1 = tk.Canvas(root, width= 300, height= 300, bg='lightsteelblue')
 Canvas1.pack()
-#ler = pd.read_excel ('C:/Desenvolvimento/python/salario.xls')
-valor_salario_liquido = []
 
-ler = 0
-def getExcel():
+lb = tk.Label(root,text = "")
+lb.place(x=125, y=200)
+lb.config(fg="lightsteelblue")
+lb["bg"] = "lightsteelblue"
+
+ler = 0  
+def mudaTxt():
+    lb["text"] = "Gerado"
+    lb["fg"] = "white"
+    lb["bg"] = "green"
+    
+    
+def getExcel():    
     global ler
     import_file_path = filedialog.askopenfilename()
     ler = pd.read_excel(import_file_path)
-    root.quit()
+    mudaTxt()
+    time.sleep(3)
+    browseButtonFechar['fg'] = 'red'
+
     
 browseButton_excel = tk.Button(
     text="importe excel file",
-    command=getExcel,
+    command=getExcel, 
     bg='green', fg='white', font=('helvetica', 12, 'bold'))
 Canvas1.create_window(150,150, window=browseButton_excel)
+
+browseButtonFechar = tk.Button(
+text="Fechar",
+command=root.quit(),
+bg='lightsteelblue', fg='lightsteelblue', font=('helvetica', 12, 'bold'))
+Canvas1.create_window(150,250, window=browseButtonFechar)
+
 
 
 root.mainloop()
