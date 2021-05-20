@@ -1,11 +1,8 @@
-import time
 import tkinter as tk
 from tkinter import Canvas, DoubleVar, Message, filedialog, ttk
 from tkinter.constants import X
 import pandas as pd
-import numpy  as np
 from openpyxl import *
-import pyautogui
 import Calculo_valores as calc
 
 #Criando as listas
@@ -37,7 +34,7 @@ def getExcel():
         count= count + 1
         i = 0
         while i <1000000:
-            i = i + 3
+            i = i + 2
         varBarra.set(count)
         root.update()
     root.quit()
